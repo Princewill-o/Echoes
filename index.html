@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Portfolio</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f0;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            background-color: #f5f5f0;
+            border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-title {
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        .header-icon {
+            width: 24px;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background-color: #5d6e4e;
+            color: white;
+            padding: 40px 0 60px;
+            text-align: center;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 20px auto;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 5px;
+            display: block;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .hero h2 {
+            font-size: 1.2rem;
+            font-weight: 400;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 40px 20px;
+            margin: 20px 0;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.03);
+        }
+
+        .section-title {
+            color: #5d6e4e;
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        .section-content {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        /* Project Filters */
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin: 30px 0;
+        }
+
+        .filter-btn {
+            padding: 8px 20px;
+            border: 2px solid #5d6e4e;
+            border-radius: 50px;
+            background: none;
+            color: #5d6e4e;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-btn.active {
+            background-color: #5d6e4e;
+            color: white;
+        }
+
+        .filter-btn:hover {
+            background-color: rgba(93, 110, 78, 0.1);
+        }
+
+        /* Projects */
+        .projects {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .project-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.03);
+            padding: 20px;
+        }
+
+        .project-img {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            color: #5d6e4e;
+            margin-bottom: 10px;
+        }
+
+        .project-description {
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .project-tech {
+            margin-bottom: 20px;
+            color: #777;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .btn-primary {
+            background-color: #92b085;
+            color: white;
+            border: none;
+        }
+
+        .btn-outline {
+            background: none;
+            border: 2px solid #5d6e4e;
+            color: #5d6e4e;
+        }
+
+        /* Skills */
+        .skills {
+            margin-top: 30px;
+        }
+
+        .skill-item {
+            margin-bottom: 20px;
+        }
+
+        .skill-name {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.2rem;
+            color: #5d6e4e;
+            margin-bottom: 8px;
+        }
+
+        .skill-bar {
+            height: 10px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background-color: #5d6e4e;
+            border-radius: 5px;
+        }
+
+        /* Contact */
+        .contact-info {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .social-link {
+            color: #5d6e4e;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #5d6e4e;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: #5d6e4e;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            font-size: 1.5rem;
+        }
+
+        /* Navigation */
+        .nav-controls {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+        }
+
+        .nav-button {
+            color: #999;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .share-button {
+            color: #5d6e4e;
+            font-weight: 500;
+        }
+
+        /* Responsive */
+        @media (min-width: 768px) {
+            .projects {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-icon">←</div>
+        <div class="header-title">
+            <h1 style="font-size: 1rem;">Personal Portfolio | Front-End Developer</h1>
+            <p style="font-size: 0.8rem; color: #666;">personalportfolio.github.io</p>
+        </div>
+        <div class="header-icon">⋮</div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <img src="images/IMG_9231.WEBP" alt="Profile" class="profile-img">
+            <h1>Hi, I'm David Olapade</h1>
+            <h2>Front-End Developer passionate about clean UI & delightful UX</h2>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <div class="container">
+        <section class="section">
+            <h2 class="section-title">About Me</h2>
+            <div class="section-content">
+                <p>I'm a front-end developer with a background in Media and Marketing, which means I approach coding with a strong sense of storytelling and design. I build responsive, accessible, and user-friendly websites using HTML, CSS, and JavaScript and I'm currently diving deeper into JavaScript with reacts.</p>
+                <br>
+                <p>While front-end is my focus, I've also worked across the stack with PHP and MySql, giving me a solid grasp of how everything connects. From WordPress themes to custom e-commerce platforms, I love turning ideas into clean, functional interfaces that feel great to use.</p>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section class="section">
+            <h2 class="section-title">Projects</h2>
+            <div class="filters">
+                <button class="filter-btn active">All</button>
+                <button class="filter-btn">HTML/CSS</button>
+                <button class="filter-btn">JavaScript</button>
+                <button class="filter-btn"> PHP</button>
+                <button class="filter-btn">Full-Stack</button>
+            </div>
+            <div class="projects">
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <img src="/images/Screenshot 2025-04-11 at 22.41.57.png" alt="Studio Ghibli Quiz" class="project-img">
+                    <h3 class="project-title">Registration Crude Appp</h3>
+                    <p class="project-description"> A full-stack registration CRUD application allowing users to register via a signup form, with data stored in a MySQL database. 
+                        It supports create, read, update, and delete operations using PHP and SQL, and includes a search feature built with JavaScript to quickly find users by ID.
+                    </p></p>
+                    <p class="project-tech">Tech: PHP, MySQL, HTML, CSS, JavaScript , API</p>
+                    <div class="button-group">
+
+                        <a href="https://github.com/David-O747/CRUDE-Operation" class="btn btn-outline" target="_blank">GitHub</a>
+
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <img src="/images/Screenshot 2025-04-29 at 12.13.03.png" alt="Experience Valencia" class="project-img">
+                    <h3 class="project-title">Company website</h3>
+                    <p class="project-description">A fully responsive, modern company website built to showcase services and engage users across all devices.</p>
+                    <p class="project-tech">Tech: HTML, CSS ,SASS , JavaScript</p>
+                    <div class="button-group">
+                        <a href="https://github.com/David-O747/Responsive-Website" class="btn btn-outline" target="_blank">GitHub</a>
+
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <img src="/images/Screenshot 2025-04-29 at 12.47.58.png" alt="GlowUp Skincare" class="project-img">
+                    <h3 class="project-title">Memory App</h3>
+                    <p class="project-description">A JavaScript-powered memory app that lets users add, edit, and delete tasks, with support for light/dark mode toggling — built to showcase DOM manipulation and state management.
+                    </p>
+                    <p class="project-tech">Tech: JavaScript , CSS , HTML</p>
+                    <div class="button-group">
+                       
+                        <a href="https://github.com/David-O747/Javascript-Projects/blob/main/Javscript%20projects/project_one.html" class="btn btn-outline" target="_blank">GitHub</a>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="section">
+            <h2 class="section-title">Skills</h2>
+            <div class="skills">
+                <!-- HTML5 -->
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>HTML5</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 90%;"></div>
+                    </div>
+                </div>
+                
+                <!-- CSS3 -->
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>CSS3</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 90%;"></div>
+                    </div>
+                </div>
+                
+                <!-- JavaScript -->
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>JavaScript</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 65%;"></div>
+                    </div>
+                </div>
+                
+                <!-- Git & GitHub -->
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Git & GitHub</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 75%;"></div>
+                    </div>
+                </div>
+                
+
+
+                    <!-- PHP & PHP admin -->
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>PHP & PHP admin</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 45%;"></div>
+                    </div>
+                </div>
+                
+
+                    <!-- SQL and MySQL -->
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Sql & MySQL</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 55%;"></div>
+                    </div>
+                </div>
+                
+                    <!-- Java -->
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Java (currently learning)</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 5%;"></div>
+                    </div>
+                </div>
+
+
+
+
+
+                <!-- React -->
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>React (currently learning)</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 15%;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="section">
+            <h2 class="section-title">Contact</h2>
+            <div class="contact-info">
+                <p>Let's connect! Email me at <a href="dolapade747@gmail.com">your.email@example.com</a></p>
+                <p>or reach out on:</p>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/david-olapade-015b622b0/" class="social-link" target="_blank">LinkedIn</a>
+                    <a href="https://github.com/David-O747" class="social-link" target="_blank">GitHub</a>
+                    
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 Your Name. All rights reserved.</p>
+    </footer>
+
+    <!-- Scroll to top button -->
+    <div class="scroll-top">↑</div>
+
+    <!-- Navigation controls -->
+    <div class="nav-controls">
+        <div class="nav-button">←</div>
+        <div class="nav-button">→</div>
+        <div class="share-button">Share</div>
+    </div>
+
+    <script>
+        // JavaScript for basic interactivity
+        document.addEventListener('DOMContentLoaded', function() {
+            // Filter buttons
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    // In a real implementation, we would filter projects here
+                });
+            });
+            
+            // Scroll to top functionality
+            const scrollTopBtn = document.querySelector('.scroll-top');
+            
+            scrollTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Show/hide scroll button based on scroll position
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    scrollTopBtn.style.display = 'flex';
+                } else {
+                    scrollTopBtn.style.display = 'none';
+                }
+            });
+            
+            // Initially hide scroll button
+            scrollTopBtn.style.display = 'none';
+        });
+    </script>
+</body>
+</html>
