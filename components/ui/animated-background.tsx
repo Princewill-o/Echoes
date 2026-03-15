@@ -51,6 +51,7 @@ export function AnimatedBackground({
     let particles: Particle[] = []
 
     const resize = () => {
+      if (!canvas) return
       canvas.width = window.innerWidth
       canvas.height = window.innerHeight
     }
@@ -66,8 +67,13 @@ export function AnimatedBackground({
       size: number
 
       constructor() {
-        this.x = Math.random() * canvas.width
-        this.y = Math.random() * canvas.height
+        if (!canvas) {
+          this.x = 0
+          this.y = 0
+        } else {
+          this.x = Math.random() * canvas.width
+          this.y = Math.random() * canvas.height
+        }
         this.vx = (Math.random() - 0.5) * 2
         this.vy = (Math.random() - 0.5) * 2
         this.life = 0
@@ -77,6 +83,7 @@ export function AnimatedBackground({
       }
 
       update() {
+        if (!canvas) return
         this.x += this.vx
         this.y += this.vy
         this.life++
@@ -106,6 +113,8 @@ export function AnimatedBackground({
     }
 
     const animate = () => {
+      if (!ctx || !canvas) return
+      
       // Use different background colors for dark/light mode
       if (isDark) {
         ctx.fillStyle = 'rgba(4, 2, 11, 0.1)'

@@ -142,12 +142,16 @@ Make it beautiful, make it real, make it unforgettable.`
         })
 
         if (response.status === '200') {
-          const content = response.body.choices[0].message.content
-          const jsonMatch = content.match(/\{[\s\S]*\}/)
+          const body = response.body as any
+          const content = body.choices?.[0]?.message?.content
           
-          if (jsonMatch) {
-            const analysis = JSON.parse(jsonMatch[0])
-            return NextResponse.json(analysis)
+          if (content) {
+            const jsonMatch = content.match(/\{[\s\S]*\}/)
+            
+            if (jsonMatch) {
+              const analysis = JSON.parse(jsonMatch[0])
+              return NextResponse.json(analysis)
+            }
           }
         }
       } catch (error) {

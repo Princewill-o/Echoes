@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, Suspense } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
 import { Music, Check, Sparkles, Edit3, Play, Download, Share2, Pause, ArrowLeft } from 'lucide-react'
 import Sidebar from '../components/Sidebar'
@@ -20,7 +20,7 @@ const MUSIC_STEPS = [
   { label: 'Finalizing audio', sub: 'Rendering your song...', duration: 1000, color: 'bg-green-500' }
 ]
 
-export default function Create() {
+function CreateContent() {
   const searchParams = useSearchParams()
   const router = useRouter()
   const memory = searchParams.get('memory') || ''
@@ -739,5 +739,18 @@ export default function Create() {
         </div>
       </AnimatedBackground>
     </>
+  )
+}
+
+
+export default function Create() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-white">Loading...</div>
+      </div>
+    }>
+      <CreateContent />
+    </Suspense>
   )
 }
