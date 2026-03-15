@@ -1,6 +1,14 @@
 # Echoes 🎵
 
-Turn your memories into cinematic songs with AI.
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Princewill-o/Echoes)
+[![Live Demo](https://img.shields.io/badge/demo-live-success)](https://echoes-princewill-o.vercel.app)
+[![GitHub](https://img.shields.io/badge/github-repo-blue)](https://github.com/Princewill-o/Echoes)
+
+> Turn your memories into cinematic songs with AI
+
+**🏆 Hackathon Project 2026**
+
+[Live Demo](https://echoes-princewill-o.vercel.app) | [GitHub Repo](https://github.com/Princewill-o/Echoes) | [Setup Guide](VERCEL_SETUP.md)
 
 ## Features
 
