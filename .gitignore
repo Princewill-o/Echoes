@@ -2,3 +2,17 @@ node_modules
 .next
 .env.local
 .DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+ai-service/venv/
+ai-service/.venv/
+
+# Generated audio files
+/public/audio/*.wav
+/public/audio/*.mp3
+
+# AI models cache
+.cache/
+models/

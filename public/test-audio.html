@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Audio Test</title>
+</head>
+<body>
+    <h1>Audio Test Page</h1>
+    <p>Testing audio files from /audio directory</p>
+    
+    <h2>Test 1: Direct Audio Tag</h2>
+    <audio controls src="/audio/5f6b27bd-2fa9-4ca8-9a9a-9e423dcade40.wav">
+        Your browser does not support audio.
+    </audio>
+    
+    <h2>Test 2: JavaScript Audio</h2>
+    <button onclick="playAudio()">Play Audio</button>
+    <button onclick="pauseAudio()">Pause Audio</button>
+    <div id="status"></div>
+    
+    <script>
+        let audio = null;
+        
+        function playAudio() {
+            if (!audio) {
+                audio = new Audio('/audio/5f6b27bd-2fa9-4ca8-9a9a-9e423dcade40.wav');
+                audio.addEventListener('error', (e) => {
+                    document.getElementById('status').innerHTML = 'Error: ' + e.message;
+                    console.error('Audio error:', e);
+                });
+                audio.addEventListener('loadeddata', () => {
+                    document.getElementById('status').innerHTML = 'Audio loaded successfully!';
+                });
+            }
+            audio.play().then(() => {
+                document.getElementById('status').innerHTML = 'Playing...';
+            }).catch(err => {
+                document.getElementById('status').innerHTML = 'Play error: ' + err.message;
+                console.error('Play error:', err);
+            });
+        }
+        
+        function pauseAudio() {
+            if (audio) {
+                audio.pause();
+                document.getElementById('status').innerHTML = 'Paused';
+            }
+        }
+    </script>
+</body>
+</html>

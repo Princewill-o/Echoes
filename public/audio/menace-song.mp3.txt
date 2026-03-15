@@ -1,0 +1,8 @@
+PLACEHOLDER FILE
+
+To add the "Menace in the Hallways" song:
+1. Replace this file with your actual MP3 file
+2. Name it: menace-song.mp3
+3. The chat buddy will automatically play it when users interact with the chatbot
+
+The song will be used in the Music Buddy chat page (/chat)
