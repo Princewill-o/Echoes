@@ -11,6 +11,22 @@ import { useThemeState } from './hooks/useThemeState'
 export default function Home() {
   const router = useRouter()
   const isDark = useThemeState()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) {
+    return (
+      <>
+        <Sidebar />
+        <div className="min-h-screen bg-[#04020b] pl-[60px] md:pl-56 flex items-center justify-center">
+          <div className="text-white">Loading...</div>
+        </div>
+      </>
+    )
+  }
 
   return (
     <>
