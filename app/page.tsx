@@ -17,12 +17,13 @@ export default function Home() {
     setMounted(true)
   }, [])
 
+  // Simple loading state without AnimatedBackground
   if (!mounted) {
     return (
       <>
         <Sidebar />
-        <div className="min-h-screen bg-[#04020b] pl-[60px] md:pl-56 flex items-center justify-center">
-          <div className="text-white">Loading...</div>
+        <div className={`min-h-screen pl-[60px] md:pl-56 flex items-center justify-center ${isDark ? 'bg-[#04020b]' : 'bg-slate-50'}`}>
+          <div className={`text-lg ${isDark ? 'text-white' : 'text-slate-900'}`}>Loading Echoes...</div>
         </div>
       </>
     )
@@ -31,8 +32,9 @@ export default function Home() {
   return (
     <>
       <Sidebar />
-      <AnimatedBackground particleCount={600} baseHue={280}>
-        <div className="min-h-screen relative pl-[60px] md:pl-56">
+      <div className={`min-h-screen relative pl-[60px] md:pl-56 transition-colors duration-300 ${isDark ? 'bg-[#04020b]' : 'bg-slate-50'}`}>
+        <AnimatedBackground particleCount={600} baseHue={280}>
+          <div className="min-h-screen relative">
           {/* Content */}
           <div className="relative z-10 flex flex-col items-center justify-center min-h-screen p-6 md:p-10">
             <div className="max-w-3xl w-full text-center mb-12">
@@ -114,7 +116,8 @@ export default function Home() {
           </div>
           </div>
         </div>
-      </AnimatedBackground>
+        </AnimatedBackground>
+      </div>
     </>
   )
 }
